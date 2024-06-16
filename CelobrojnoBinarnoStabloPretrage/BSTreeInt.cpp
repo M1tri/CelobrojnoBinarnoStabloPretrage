@@ -873,3 +873,92 @@ BSTNodeInt* BSTreeInt::findSibling(BSTNodeInt* p)
 }
 
 // OK2 2022
+
+
+// JUN 2022
+
+bool BSTreeInt::isPerfect()
+{
+	// kao nmp svejedno sta se vrati jer stablo ne postoji
+	if (!root)
+		return true;
+
+	return isPerfect(root);
+}
+
+bool BSTreeInt::isPerfect(BSTNodeInt* ptr)
+{
+	int levoCount = 0;
+	int desnoCount = 0;
+
+	if (!ptr->left && !ptr->right)
+		return true;
+
+	if (ptr->left)
+		levoCount = brCvorova(ptr->left);
+
+	if (ptr->right)
+		desnoCount = brCvorova(ptr->right);
+
+	if (abs(levoCount - desnoCount) > 1)
+		return false;
+
+	if (ptr->left && !ptr->right)
+		return isPerfect(ptr->left);
+
+	if (ptr->right && !ptr->left)
+		return isPerfect(ptr->right);
+
+	return isPerfect(ptr->left) && isPerfect(ptr->right);
+}
+// JUN 2022
+
+
+// JUN 2021
+
+int BSTreeInt::countSL()
+{
+	if (!root)
+		return 0;
+
+	int count = 0;
+	countSL(root, count);
+
+	return count;
+}
+
+void BSTreeInt::countSL(BSTNodeInt* ptr, int& count)
+{
+	int sumLeft = 0;
+	if (ptr->left)
+		sumLeft = sumOfChildren(ptr->left);
+
+	int sumRight = 0;
+	if (ptr->right)
+		sumRight = sumOfChildren(ptr->right);
+
+	if (sumLeft > sumRight)
+		count++;
+
+	if (ptr->left)
+		countSL(ptr->left, count);
+
+	if (ptr->right)
+		countSL(ptr->right, count);
+}
+
+int BSTreeInt::sumOfChildren(BSTNodeInt* ptr)
+{
+	int sum = ptr->key;
+
+	if (ptr->left)
+		sum += sumOfChildren(ptr->left);
+
+	if (ptr->right)
+		sum += sumOfChildren(ptr->right);
+
+	return sum;
+}
+
+// JUN 2021
+

@@ -92,7 +92,38 @@ void main()
 
 	// OKT2 2022
 
-	int maxLvl = drvo.levelWithMostNodes();
+	
+	// JUN 2022
+
+	BSTreeInt brest;
+	brest.insert(10);
+	brest.insert(3);
+	brest.insert(12);
+	brest.insert(1);
+	brest.insert(4);
+	brest.insert(13);
+	brest.insert(6);
+	brest.insert(11);
+
+	bool value = brest.isPerfect(); // jeste
+	bool value2 = drvo.isPerfect(); // nije
+
+	// JUN 2022
+
+	// JUN 2021
+
+	int countSL = drvo.countSL();
+
+	// JUN 2021
+
+
+	// random
+
+	int max1 = drvo.levelWithHighestNodeSum();
+	int max2 = brest.levelWithHighestNodeSum();
+
+
+	// random
 
 
 

@@ -37,6 +37,7 @@ public:
 
 	void deleteAllLeafsDepth(int minDepth);
 	
+	// random ahh
 	int levelWithMostNodes()
 	{
 		if (!root)
@@ -78,7 +79,48 @@ public:
 
 		return maxLevel;
 	}
+	int levelWithHighestNodeSum()
+	{
+		if (!root)
+			return -1;
 
+		QueueAsArrayBSTNodeInt red(brCvorova());
+		int maxLvl = 0;
+		int maxSum = 0;
+		int currLvl = -1;
+
+		red.enqueue(root);
+
+		while (!red.isEmpty())
+		{
+			currLvl++;
+			int velicinaNivoa = red.numberOfElements();
+
+			int sum = 0;
+			for (int i = 0; i < velicinaNivoa; i++)
+			{
+				BSTNodeInt* pom = red.dequeue();
+
+				if (pom->right)
+					red.enqueue(pom->right);
+
+				if (pom->left)
+					red.enqueue(pom->left);
+
+				sum += pom->key;
+			}
+
+			if (sum > maxSum)
+			{
+				maxSum = sum;
+				maxLvl = currLvl;
+			}
+		}
+
+		return maxLvl;
+	}
+
+	// random ahh
 
 	// KOL2 grupa A 2022
 	BSTNodeInt* maxRazlikaA();
@@ -121,6 +163,19 @@ public:
 	BSTNodeInt* findSibling(BSTNodeInt* p);
 
 	// OKT2 2022
+
+	// JUN 2022
+
+	bool isPerfect();
+
+	// JUN 2022
+	
+	// JUN 2021
+
+	int countSL();
+
+	// JUN 2021
+
 
 private:
 	bool deleteAllLeafsDepth(BSTNodeInt* ptr, int currDepth, int minDepth);
@@ -182,6 +237,20 @@ private:
 	BSTNodeInt* getNode(BSTNodeInt* ptr, int p);
 	
 	// OK2 2022
+
+	// JUN 2022
+
+	bool isPerfect(BSTNodeInt* ptr);
+
+	// JUN 2022
+
+	// JUN 2021
+
+	void countSL(BSTNodeInt* ptr, int& count);
+	int sumOfChildren(BSTNodeInt* ptr);
+
+	// JUN 2021
+
 
 };
 
